@@ -1,12 +1,17 @@
-version: '3'
+version: '2'
 
 services:
   geth:
-    image: ethereum/client-go
-    command: '--datadir /root/eth_private_net init /root/files/genesis.json'
+    build:
+      context: .
+      dockerfile: ./containers/ethereum/Dockerfile
+    mem_limit: 15gb
+    cpuset: 0,1,2,3
     volumes:
       - ./data:/root
-      - ./files/genesis.json:/root/files/genesis.json:ro
+      - ./containers/ethereum/files/genesis.json:/root/files/genesis.json:ro
     ports:
       - "30303:30303"
       - "8545:8545"
+    tty: true
+
