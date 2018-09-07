@@ -3,11 +3,10 @@ version: '3'
 services:
   geth:
     image: ethereum/client-go
-    command: 'geth --datadir /root/eth_private_net init /root/files/genesis.json'
+    command: '--datadir /root/eth_private_net init /root/files/genesis.json'
     volumes:
       - ./data:/root
       - ./files/genesis.json:/root/files/genesis.json:ro
     ports:
       - "30303:30303"
       - "8545:8545"
-
