@@ -10,7 +10,7 @@ $ geth --networkid "15" --nodiscover --datadir "/root/eth_private_net" console 2
 
 background
 ```
-$ geth --networkid "15" --nodiscover --datadir "/root/eth_private_net" 2>> /root/eth_private_net/geth_err.log &
+$ nohup geth --networkid "15" --nodiscover --datadir "/root/eth_private_net" 2>> /root/eth_private_net/geth_err.log &
 ```
 
 attach
