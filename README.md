@@ -1,21 +1,21 @@
 init
 ```
-$ geth --datadir /root/eth_private_net init /root/files/genesis.json
+$ geth --datadir /node/private_net init /node/files/genesis.json
 ```
 
-foreground
+Launch with foreground
 ```
-$ geth --networkid "15" --nodiscover --datadir "/root/eth_private_net" console 2>> /root/eth_private_net/geth_err.log
-```
-
-background
-```
-$ nohup geth --networkid "15" --nodiscover --datadir "/root/eth_private_net" 2>> /root/eth_private_net/geth_err.log &
+$ geth --networkid "15" --nodiscover --datadir "/node/private_net" console 2>> /node/private_net/geth_err.log
 ```
 
-attach
+Launch with background
 ```
-$ geth --datadir "/root/eth_private_net" attach ipc:/root/eth_private_net/geth.ipc
+$ nohup geth --networkid "15" --nodiscover --datadir "/node/private_net" 2>> /node/private_net/geth_err.log &
+```
+
+Attach to javascript console
+```
+$ geth --datadir "/node/private_net" attach ipc:/node/private_net/geth.ipc
 ```
 
 Generate EOA
@@ -23,3 +23,17 @@ Generate EOA
 personal.newAccount("passwd")
 ````
 
+Compile sol
+```
+$ solc --abi --bin SingleNumRegister.sol
+```
+
+Attach ethereum console container
+```
+$ docker attach <ethereum console container name>
+```
+
+Append to hosts
+```
+127.0.0.1 node
+```

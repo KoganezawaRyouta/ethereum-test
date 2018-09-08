@@ -1,16 +1,30 @@
 version: '2'
 
 services:
-  geth:
+  node:
     build:
       context: .
-      dockerfile: ./containers/ethereum/Dockerfile
+      dockerfile: ./containers/node/Dockerfile
     mem_limit: 15gb
-    cpuset: 0,1,2,3
     volumes:
-      - ./data:/root
-      - ./containers/ethereum/files/genesis.json:/root/files/genesis.json:ro
+      - ./node/private_net:/node/private_net
+      - ./containers/node/run.sh:/node/run.sh
+      - ./src:/node/src:ro
     ports:
       - "30303:30303"
       - "8545:8545"
+    stdin_open: true
+    tty: true
+  client:
+    build:
+      context: .
+      dockerfile: ./containers/client/Dockerfile
+    mem_limit: 5gb
+    volumes:
+      - ./containers/client/run.sh:/client/run.sh
+    ports:
+      - "3333:3333"
+    links:
+      - node
+    stdin_open: true
     tty: true
