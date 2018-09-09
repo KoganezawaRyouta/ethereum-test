@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Initialize ethereum
+# initialize ethereum
 geth --datadir $GETH_ROOT/private_net init $GETH_ROOT/src/config/genesis.json
 
 # generate and store a wallet password

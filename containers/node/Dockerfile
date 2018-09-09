@@ -1,14 +1,4 @@
-FROM ubuntu:16.04
-
-RUN \
-  apt-get update && \
-  apt-get -y install software-properties-common && \
-  add-apt-repository -y ppa:ethereum/ethereum && \
-  apt-get update
-
-RUN \
-  apt-get -y install ethereum \
-  solc
+FROM rk2826/ethereum-geth
 
 ENV GETH_ROOT /node
 COPY ./src/config/genesis.json ${GETH_ROOT}/src/config/genesis.json
