@@ -9,8 +9,10 @@ if [ ! -f $GETH_ROOT/.accountpassword ]; then
 fi
 
 if [ ! -f $GETH_ROOT/.primaryaccount ]; then
-    geth --networkid "15" --nodiscover --datadir "$GETH_ROOT/private_net" --password $GETH_ROOT/.accountpassword account new > $GETH_ROOT/.primaryaccount
+    geth --datadir "$GETH_ROOT/private_net" --testnet --password $GETH_ROOT/.accountpassword account new > $GETH_ROOT/.primaryaccount
 fi
 
-geth --networkid "15" --nodiscover --datadir "$GETH_ROOT/private_net" --password $GETH_ROOT/.accountpassword --mine --rpc --rpcvhosts "node" --rpcaddr "0.0.0.0" --rpcport "8545" --rpcapi "db,eth,net,web3" --rpccorsdomain "*"
+# geth --networkid "3" --datadir "$GETH_ROOT/private_net" --syncmode "full" --password $GETH_ROOT/.accountpassword --rpc --rpcvhosts "node" --rpcaddr "0.0.0.0" --rpcport "8545" --rpcapi "db,eth,net,web3,personal" --rpccorsdomain "*"
+geth --datadir "$GETH_ROOT/private_net" --testnet --syncmode "fast" --cache=3072 --password $GETH_ROOT/.accountpassword --rpc --rpcvhosts "node" --rpcaddr "0.0.0.0" --rpcport "8545" --rpcapi "db,eth,net,web3,personal" --rpccorsdomain "*"
+
 
